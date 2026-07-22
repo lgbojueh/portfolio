@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Lyoneh Gbojueh | Software Engineer</title>
+
   <meta
     name="description"
     content="Lyoneh Gbojueh — Computer Science graduate building software, IT support tools, cloud projects, and secure systems."
@@ -11,6 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
@@ -32,7 +35,9 @@
       --amber: #b45309;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -43,11 +48,16 @@
     }
 
     body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--light);
-      color: var(--navy);
-      line-height: 1.6;
+      min-height: 100vh;
       overflow-x: hidden;
+      color: var(--navy);
+      background: var(--light);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     a {
@@ -55,7 +65,23 @@
       text-decoration: none;
     }
 
-    /* ─── PARTICLES ─────────────────────────────────────────── */
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, 0.32);
+      outline-offset: 3px;
+    }
+
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    /* ─── PARTICLES ────────────────────────────────────────── */
+
     #particles {
       position: fixed;
       inset: 0;
@@ -63,7 +89,8 @@
       pointer-events: none;
     }
 
-    /* ─── ORIGINAL-STYLE SCROLL REVEALS ────────────────────── */
+    /* ─── ORIGINAL SCROLL REVEAL EFFECTS ──────────────────── */
+
     .reveal {
       opacity: 0;
       transform: translateY(60px) scale(0.96);
@@ -116,32 +143,50 @@
       transform: scale(1);
     }
 
-    .stagger-1 { transition-delay: 0.08s; }
-    .stagger-2 { transition-delay: 0.16s; }
-    .stagger-3 { transition-delay: 0.24s; }
-    .stagger-4 { transition-delay: 0.32s; }
-    .stagger-5 { transition-delay: 0.4s; }
+    .stagger-1 {
+      transition-delay: 0.08s;
+    }
+
+    .stagger-2 {
+      transition-delay: 0.16s;
+    }
+
+    .stagger-3 {
+      transition-delay: 0.24s;
+    }
+
+    .stagger-4 {
+      transition-delay: 0.32s;
+    }
+
+    .stagger-5 {
+      transition-delay: 0.4s;
+    }
 
     /* ─── NAVIGATION ───────────────────────────────────────── */
+
     .nav {
       position: fixed;
       top: 0;
-      left: 0;
       right: 0;
+      left: 0;
       z-index: 100;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 20px 40px;
       background: rgba(248, 250, 252, 0.86);
       border-bottom: 1px solid rgba(15, 23, 42, 0.07);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      transition: padding 0.3s ease;
+      transition:
+        padding 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .nav.scrolled {
       padding: 13px 40px;
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
     }
 
     .nav-logo {
@@ -176,15 +221,20 @@
       color: white !important;
       background: var(--navy);
       border-radius: 8px;
-      transition: transform 0.2s ease, background 0.2s ease !important;
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .nav-cta:hover {
+      color: white;
       background: var(--blue);
       transform: translateY(-2px);
     }
 
     /* ─── GENERAL ──────────────────────────────────────────── */
+
     .container {
       position: relative;
       z-index: 1;
@@ -192,14 +242,14 @@
       margin: 0 auto;
     }
 
+    section {
+      padding: 100px 0;
+    }
+
     .section-divider {
       width: 100%;
       height: 1px;
       background: var(--line);
-    }
-
-    section {
-      padding: 100px 0;
     }
 
     .section-label {
@@ -215,6 +265,7 @@
       margin-bottom: 18px;
       font-family: "DM Serif Display", serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
       line-height: 1.12;
       letter-spacing: -0.03em;
     }
@@ -228,6 +279,7 @@
     }
 
     /* ─── HERO ─────────────────────────────────────────────── */
+
     .hero {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
@@ -263,8 +315,14 @@
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
     }
 
     .hero h1 {
@@ -305,7 +363,12 @@
       border-radius: 8px;
       font-size: 0.9rem;
       font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
     }
 
     .btn:hover {
@@ -319,6 +382,7 @@
     }
 
     .btn-dark:hover {
+      color: white;
       background: var(--blue);
       box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
     }
@@ -366,17 +430,28 @@
     }
 
     @keyframes scrollLine {
-      from { left: -100%; }
-      to { left: 100%; }
+      from {
+        left: -100%;
+      }
+
+      to {
+        left: 100%;
+      }
     }
 
     /* ─── GLOBE ────────────────────────────────────────────── */
+
     .globe-wrapper {
       position: relative;
       width: 100%;
       height: 500px;
       overflow: hidden;
-      background: linear-gradient(135deg, #edf3fb 0%, #e4edf8 48%, #f0f4fa 100%);
+      background: linear-gradient(
+        135deg,
+        #edf3fb 0%,
+        #e4edf8 48%,
+        #f0f4fa 100%
+      );
       border: 1px solid #d9e3ef;
       border-radius: 20px;
       box-shadow: 0 22px 60px rgba(37, 99, 235, 0.1);
@@ -421,6 +496,7 @@
       border: 1px solid rgba(15, 23, 42, 0.08);
       border-radius: 8px;
       backdrop-filter: blur(12px);
+      pointer-events: none;
     }
 
     .globe-label {
@@ -462,9 +538,10 @@
     }
 
     .project-pop h3 {
-      margin: 5px 0 5px;
+      margin: 5px 0;
       font-family: "DM Serif Display", serif;
       font-size: 1.25rem;
+      font-weight: 400;
     }
 
     .project-pop p {
@@ -487,6 +564,7 @@
     }
 
     /* ─── TAGS ─────────────────────────────────────────────── */
+
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -502,7 +580,8 @@
       font-weight: 700;
     }
 
-    /* ─── PROJECT SCROLL ───────────────────────────────────── */
+    /* ─── PROJECT HORIZONTAL SCROLL ───────────────────────── */
+
     .projects-scroll-wrapper {
       padding-bottom: 20px;
       overflow-x: auto;
@@ -566,6 +645,7 @@
       margin-bottom: 5px;
       font-family: "DM Serif Display", serif;
       font-size: 1.55rem;
+      font-weight: 400;
       letter-spacing: -0.02em;
     }
 
@@ -594,7 +674,9 @@
       color: var(--navy);
       font-size: 0.86rem;
       font-weight: 800;
-      transition: gap 0.2s ease, color 0.2s ease;
+      transition:
+        gap 0.2s ease,
+        color 0.2s ease;
     }
 
     .project-link:hover {
@@ -603,6 +685,7 @@
     }
 
     /* ─── SKILLS ───────────────────────────────────────────── */
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -659,7 +742,8 @@
       transform: translateY(-50%);
     }
 
-    /* ─── ABOUT / TIMELINE ─────────────────────────────────── */
+    /* ─── ABOUT ────────────────────────────────────────────── */
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -704,6 +788,8 @@
       line-height: 1.75;
     }
 
+    /* ─── TIMELINE ─────────────────────────────────────────── */
+
     .timeline-item {
       display: grid;
       grid-template-columns: 145px 1fr;
@@ -738,6 +824,7 @@
     }
 
     /* ─── CONTACT ──────────────────────────────────────────── */
+
     .contact-section {
       padding: 65px 52px;
       color: white;
@@ -760,14 +847,16 @@
     .contact-links {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 12px;
     }
 
     .contact-link,
-    .resume-button {
+    .resume-menu-button {
       display: inline-flex;
       align-items: center;
       gap: 9px;
+      min-height: 48px;
       padding: 13px 20px;
       color: #d5dfef;
       background: transparent;
@@ -777,18 +866,106 @@
       font-family: "Inter", sans-serif;
       font-size: 0.87rem;
       font-weight: 800;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
     }
 
     .contact-link:hover,
-    .resume-button:hover {
+    .resume-menu-button:hover {
       color: white;
       background: rgba(37, 99, 235, 0.16);
       border-color: var(--blue);
       transform: translateY(-2px);
     }
 
+    /* ─── RESUME DROPDOWN ─────────────────────────────────── */
+
+    .resume-menu {
+      position: relative;
+      z-index: 20;
+    }
+
+    .resume-menu-button {
+      white-space: nowrap;
+    }
+
+    .resume-arrow {
+      display: inline-block;
+      margin-left: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    .resume-menu.open .resume-arrow {
+      transform: rotate(180deg);
+    }
+
+    .resume-dropdown {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 0;
+      z-index: 30;
+      width: 220px;
+      padding: 7px;
+      visibility: hidden;
+      background: #172033;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.38);
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    .resume-menu.open .resume-dropdown {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .resume-dropdown button,
+    .resume-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 12px;
+      color: #d5dfef;
+      background: transparent;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-family: "Inter", sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-align: left;
+      transition:
+        color 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .resume-dropdown button:hover,
+    .resume-dropdown a:hover,
+    .resume-dropdown button:focus-visible,
+    .resume-dropdown a:focus-visible {
+      color: white;
+      background: rgba(37, 99, 235, 0.2);
+      outline: none;
+    }
+
+    .resume-dropdown-divider {
+      height: 1px;
+      margin: 6px 4px;
+      background: #334155;
+    }
+
     /* ─── RESUME MODAL ─────────────────────────────────────── */
+
     .resume-modal-overlay {
       position: fixed;
       inset: 0;
@@ -797,14 +974,18 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      visibility: hidden;
       background: rgba(2, 6, 23, 0.78);
       backdrop-filter: blur(8px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease;
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
     }
 
     .resume-modal-overlay.open {
+      visibility: visible;
       opacity: 1;
       pointer-events: auto;
     }
@@ -838,6 +1019,7 @@
     .resume-header h3 {
       font-family: "DM Serif Display", serif;
       font-size: 1.18rem;
+      font-weight: 400;
     }
 
     .resume-actions {
@@ -880,18 +1062,37 @@
     }
 
     .resume-body {
+      display: flex;
       flex: 1;
+      flex-direction: column;
+      min-height: 0;
       background: #525659;
     }
 
     .resume-body iframe {
       display: block;
+      flex: 1;
       width: 100%;
-      height: 100%;
+      min-height: 0;
       border: none;
     }
 
+    .resume-fallback {
+      padding: 9px 15px;
+      color: #e2e8f0;
+      background: #3f4447;
+      font-size: 0.76rem;
+      text-align: center;
+    }
+
+    .resume-fallback a {
+      color: white;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
     /* ─── FOOTER ───────────────────────────────────────────── */
+
     footer {
       position: relative;
       z-index: 1;
@@ -903,6 +1104,7 @@
     }
 
     /* ─── RESPONSIVE ───────────────────────────────────────── */
+
     @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
@@ -928,12 +1130,9 @@
     }
 
     @media (max-width: 640px) {
-      .nav {
-        padding: 15px 20px;
-      }
-
+      .nav,
       .nav.scrolled {
-        padding: 12px 20px;
+        padding: 14px 20px;
       }
 
       .nav-links {
@@ -980,13 +1179,59 @@
         padding: 70px 0;
       }
 
+      .resume-dropdown {
+        right: 0;
+        left: auto;
+        width: 210px;
+      }
+
+      .resume-modal-overlay {
+        padding: 10px;
+      }
+
+      .resume-modal {
+        height: 94vh;
+      }
+
+      .resume-header {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+      }
+
       .resume-header h3 {
-        font-size: 0.96rem;
+        width: 100%;
+        font-size: 1rem;
+      }
+
+      .resume-actions {
+        width: 100%;
       }
 
       .resume-action {
-        padding: 7px 9px;
-        font-size: 0.7rem;
+        padding: 7px 10px;
+        font-size: 0.72rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -996,33 +1241,67 @@
   <canvas id="particles"></canvas>
 
   <!-- RESUME MODAL -->
-  <div class="resume-modal-overlay" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume viewer">
+  <div
+    class="resume-modal-overlay"
+    id="resumeModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="resumeModalTitle"
+  >
     <div class="resume-modal">
       <div class="resume-header">
-        <h3>Lyoneh Gbojueh — Resume</h3>
+        <h3 id="resumeModalTitle">Lyoneh Gbojueh — Resume</h3>
 
         <div class="resume-actions">
-          <a class="resume-action primary" href="Resume1.pdf" download="Lyoneh_Gbojueh_Resume.pdf">
+          <a
+            class="resume-action primary"
+            href="./Resume1.pdf"
+            download="Lyoneh_Gbojueh_Resume.pdf"
+          >
             Download
           </a>
 
-          <a class="resume-action" href="Resume1.pdf" target="_blank" rel="noopener">
+          <a
+            class="resume-action"
+            href="./Resume1.pdf"
+            target="_blank"
+            rel="noopener"
+          >
             New Tab
           </a>
 
-          <button class="resume-close" id="closeResume" aria-label="Close resume viewer">✕</button>
+          <button
+            type="button"
+            class="resume-close"
+            id="closeResume"
+            aria-label="Close resume viewer"
+          >
+            ✕
+          </button>
         </div>
       </div>
 
       <div class="resume-body">
-        <iframe id="resumeFrame" title="Lyoneh Gbojueh Resume"></iframe>
+        <iframe
+          id="resumeFrame"
+          title="Lyoneh Gbojueh Resume"
+        ></iframe>
+
+        <div class="resume-fallback">
+          Preview not loading?
+          <a href="./Resume1.pdf" target="_blank" rel="noopener">
+            Open the resume in a new tab.
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NAV -->
+  <!-- NAVIGATION -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">lyoneh<span>.</span></a>
+    <a href="#" class="nav-logo" aria-label="Go to top">
+      lyoneh<span>.</span>
+    </a>
 
     <div class="nav-links">
       <a href="#work">Work</a>
@@ -1047,15 +1326,30 @@
       </h1>
 
       <p class="hero-sub reveal stagger-2">
-        Computer Science graduate from MSU Denver with experience in full-stack
-        development, IT support, Docker, system monitoring, databases, and Agile teams.
-        I am seeking entry-level software engineering, IT, cloud, and cybersecurity opportunities.
+        Computer Science graduate from MSU Denver with experience in
+        full-stack development, IT support, Docker, system monitoring,
+        databases, and Agile teams. I am seeking entry-level software
+        engineering, IT, cloud, and cybersecurity opportunities.
       </p>
 
       <div class="hero-actions reveal stagger-3">
         <a href="#work" class="btn btn-dark">View Projects ↓</a>
-        <a href="mailto:lyonehgbojueh32@gmail.com" class="btn btn-outline">Email Me</a>
-        <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+
+        <a
+          href="mailto:lyonehgbojueh32@gmail.com"
+          class="btn btn-outline"
+        >
+          Email Me
+        </a>
+
+        <a
+          href="https://github.com/lgbojueh"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          GitHub
+        </a>
       </div>
 
       <div class="hero-scroll-hint reveal stagger-4">
@@ -1067,44 +1361,72 @@
     <div class="globe-wrapper reveal-scale stagger-2">
       <div class="globe-label">Project Globe</div>
       <div class="globe-hint">Drag to rotate · Click pins</div>
+
       <div id="globe"></div>
 
       <article class="project-pop" id="projectCard">
-        <small>Featured Project</small>
+        <small>Full-Stack DevOps Project</small>
+
         <h3>Docker Deployment Lab</h3>
-        <p>Multi-container Docker deployment lab with Nginx, PostgreSQL, Redis, and an interactive monitoring dashboard.</p>
+
+        <p>
+          Multi-container Docker deployment lab with Nginx, PostgreSQL,
+          Redis, and an interactive monitoring dashboard.
+        </p>
+
         <div class="tags">
           <span class="tag">Docker</span>
           <span class="tag">Nginx</span>
           <span class="tag">PostgreSQL</span>
         </div>
+
+        <a
+          href="https://github.com/lgbojueh/docker-deployment-lab"
+          target="_blank"
+          rel="noopener"
+          class="project-pop-link"
+        >
+          View repository on GitHub →
+        </a>
       </article>
     </div>
   </header>
 
-  <div class="container"><div class="section-divider"></div></div>
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
 
   <!-- PROJECTS -->
   <section id="work" class="container">
     <div class="section-label reveal">Selected Work</div>
-    <h2 class="section-title reveal stagger-1">Projects and technical work.</h2>
+
+    <h2 class="section-title reveal stagger-1">
+      Projects and technical work.
+    </h2>
+
     <p class="section-desc reveal stagger-2">
       A collection of web applications, IT support tools, security projects,
       command-line applications, and infrastructure labs.
     </p>
 
-    <!-- Keeps original horizontal scrolling effect -->
+    <!-- Original horizontal scrolling effect -->
     <div class="projects-scroll-wrapper reveal stagger-3">
       <div class="projects-track" id="projectsTrack"></div>
     </div>
   </section>
 
-  <div class="container"><div class="section-divider"></div></div>
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
 
   <!-- SKILLS -->
   <section id="skills" class="container">
     <div class="section-label reveal">Technical Skills</div>
-    <h2 class="section-title reveal stagger-1">Tools and technologies I use.</h2>
+
+    <h2 class="section-title reveal stagger-1">
+      Tools and technologies I use.
+    </h2>
+
     <p class="section-desc reveal stagger-2">
       A practical foundation in programming, web development, IT systems,
       databases, infrastructure, security, and software engineering practices.
@@ -1157,34 +1479,46 @@
     </div>
   </section>
 
-  <div class="container"><div class="section-divider"></div></div>
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
 
   <!-- ABOUT -->
   <section id="about" class="container">
     <div class="section-label reveal">About</div>
-    <h2 class="section-title reveal stagger-1">A bit about me.</h2>
+
+    <h2 class="section-title reveal stagger-1">
+      A bit about me.
+    </h2>
 
     <div class="about-grid">
       <div class="quote-block reveal-left">
         “I enjoy solving technical problems, building reliable software,
         and turning complex requirements into practical solutions.”
-        <div class="quote-attr">— Lyoneh Gbojueh, Denver, CO</div>
+
+        <div class="quote-attr">
+          — Lyoneh Gbojueh, Denver, CO
+        </div>
       </div>
 
       <div class="about-details reveal-right">
         <h4>Education</h4>
+
         <p>
-          Bachelor of Science in Computer Science from Metropolitan State University of Denver,
-          graduated December 2025.
+          Bachelor of Science in Computer Science from Metropolitan State
+          University of Denver, graduated December 2025.
         </p>
 
         <h4>Leadership</h4>
+
         <p>
-          MSU Denver Honors Program participant and active member of Black/African Student
-          Engagement (BASE). Led a Scrum team of six on Brew Trade Hub.
+          MSU Denver Honors Program participant and active member of
+          Black/African Student Engagement (BASE). Led a Scrum team of six
+          on Brew Trade Hub.
         </p>
 
         <h4>Career Focus</h4>
+
         <p>
           I am seeking early-career roles in software engineering, IT support,
           cloud computing, cybersecurity, or technical operations.
@@ -1193,16 +1527,29 @@
     </div>
   </section>
 
-  <div class="container"><div class="section-divider"></div></div>
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
 
   <!-- EDUCATION -->
   <section id="education" class="container">
-    <div class="section-label reveal">Education & Achievements</div>
-    <h2 class="section-title reveal stagger-1">Academic foundation and leadership.</h2>
+    <div class="section-label reveal">
+      Education & Achievements
+    </div>
+
+    <h2 class="section-title reveal stagger-1">
+      Academic foundation and leadership.
+    </h2>
+
+    <p class="section-desc reveal stagger-2">
+      Recognized for academic performance, honors coursework, and community
+      engagement at MSU Denver.
+    </p>
 
     <div class="timeline">
       <div class="timeline-item reveal stagger-1">
         <div class="timeline-date">Dec 2025</div>
+
         <div>
           <h3>B.S. in Computer Science</h3>
           <p>Metropolitan State University of Denver — Denver, CO</p>
@@ -1211,37 +1558,54 @@
 
       <div class="timeline-item reveal stagger-2">
         <div class="timeline-date">2020 – 2025</div>
+
         <div>
           <h3>DPS Scholarship Recipient</h3>
-          <p>Awarded for maintaining a GPA of 3.5 or higher throughout undergraduate studies.</p>
+          <p>
+            Awarded for maintaining a GPA of 3.5 or higher throughout
+            undergraduate studies.
+          </p>
         </div>
       </div>
 
       <div class="timeline-item reveal stagger-3">
         <div class="timeline-date">2022 – 2025</div>
+
         <div>
           <h3>MSU Denver Honors Program</h3>
-          <p>Participated in advanced coursework and research-based learning opportunities.</p>
+          <p>
+            Participated in advanced coursework and research-based
+            learning opportunities.
+          </p>
         </div>
       </div>
 
       <div class="timeline-item reveal stagger-4">
         <div class="timeline-date">2023 – 2025</div>
+
         <div>
           <h3>Black/African Student Engagement (BASE)</h3>
-          <p>Participated in leadership, networking, academic enrichment, and community-building activities.</p>
+          <p>
+            Participated in leadership, networking, academic enrichment,
+            and community-building activities.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="container"><div class="section-divider"></div></div>
+  <div class="container">
+    <div class="section-divider"></div>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact" class="container">
     <div class="contact-section reveal-scale">
       <div class="section-label">Get In Touch</div>
-      <h2 class="section-title">Let's build something great.</h2>
+
+      <h2 class="section-title">
+        Let's build something great.
+      </h2>
 
       <p class="section-desc">
         I am open to software engineering, IT support, cloud, cybersecurity,
@@ -1249,45 +1613,100 @@
       </p>
 
       <div class="contact-links">
-        <a href="mailto:lyonehgbojueh32@gmail.com" class="contact-link">✉ Email</a>
-        <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="contact-link">⌨ GitHub</a>
-        <a href="https://www.linkedin.com/in/lyoneh-gbojueh-988275255" target="_blank" rel="noopener" class="contact-link">💼 LinkedIn</a>
-
-        <button class="resume-button" id="viewResume">📄 View Resume</button>
-
-        <a href="Resume1.pdf" download="Lyoneh_Gbojueh_Resume.pdf" class="contact-link">
-          ⬇ Download Resume
+        <a
+          href="mailto:lyonehgbojueh32@gmail.com"
+          class="contact-link"
+        >
+          ✉ Email
         </a>
+
+        <a
+          href="https://github.com/lgbojueh"
+          target="_blank"
+          rel="noopener"
+          class="contact-link"
+        >
+          ⌨ GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/lyoneh-gbojueh-988275255"
+          target="_blank"
+          rel="noopener"
+          class="contact-link"
+        >
+          💼 LinkedIn
+        </a>
+
+        <!-- RESUME DROPDOWN -->
+        <div class="resume-menu" id="resumeMenu">
+          <button
+            type="button"
+            class="resume-menu-button"
+            id="resumeMenuButton"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="resumeDropdown"
+          >
+            📄 Resume
+            <span class="resume-arrow" aria-hidden="true">▾</span>
+          </button>
+
+          <div
+            class="resume-dropdown"
+            id="resumeDropdown"
+            role="menu"
+            aria-label="Resume options"
+          >
+            <button
+              type="button"
+              id="viewResume"
+              role="menuitem"
+            >
+              👁 View Resume
+            </button>
+
+            <div class="resume-dropdown-divider"></div>
+
+            <a
+              href="./Resume1.pdf"
+              download="Lyoneh_Gbojueh_Resume.pdf"
+              role="menuitem"
+            >
+              ⬇ Download PDF
+            </a>
+
+            <div class="resume-dropdown-divider"></div>
+
+            <a
+              href="./Resume1.pdf"
+              target="_blank"
+              rel="noopener"
+              role="menuitem"
+            >
+              ↗ Open in New Tab
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       © <span id="year"></span> Lyoneh Gbojueh · Denver, CO
     </div>
   </footer>
 
-  <!-- THREE.JS -->
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-      }
-    }
-  </script>
-
-  <script type="module">
-    import * as THREE from "three";
-    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-
-    /* ─── ALL PROJECTS: WEBSITE CARDS + GLOBE PINS ─────────── */
-    const projects = [
+  <!-- SHARED PROJECT DATA -->
+  <script>
+    window.portfolioProjects = [
       {
         title: "Portfolio Website",
         label: "Personal Portfolio",
-        description: "Responsive personal portfolio featuring project showcases, scroll animations, a Three.js globe, and recruiter-focused contact tools.",
+        description:
+          "Responsive personal portfolio featuring project showcases, scroll animations, a Three.js globe, and recruiter-focused contact tools.",
         tech: ["HTML", "CSS", "JavaScript", "Three.js"],
         repo: "https://github.com/lgbojueh/portfolio",
         lat: 39.7392,
@@ -1297,7 +1716,8 @@
       {
         title: "Docker Deployment Lab",
         label: "Full-Stack DevOps Project",
-        description: "Multi-container Docker deployment lab with an interactive monitoring dashboard, Nginx reverse proxy, PostgreSQL, and Redis.",
+        description:
+          "Multi-container Docker deployment lab with an interactive monitoring dashboard, Nginx reverse proxy, PostgreSQL, and Redis.",
         tech: ["Docker", "Nginx", "PostgreSQL", "Redis"],
         repo: "https://github.com/lgbojueh/docker-deployment-lab",
         lat: 47.6062,
@@ -1307,7 +1727,8 @@
       {
         title: "IT Support Diagnostic Dashboard",
         label: "IT Support Dashboard",
-        description: "Full-stack IT support dashboard for system monitoring, network diagnostics, and automated troubleshooting reports.",
+        description:
+          "Full-stack IT support dashboard for system monitoring, network diagnostics, and automated troubleshooting reports.",
         tech: ["Python", "Networking", "Diagnostics", "Automation"],
         repo: "https://github.com/lgbojueh/it-support-diagnostic-dashboard",
         lat: 41.8781,
@@ -1317,7 +1738,8 @@
       {
         title: "Help Desk Ticket System",
         label: "IT Support Project",
-        description: "Help desk application for organizing technical support requests, tracking ticket status, and improving support workflows.",
+        description:
+          "Help desk application for organizing technical support requests, tracking ticket status, and improving support workflows.",
         tech: ["HTML", "CSS", "JavaScript", "IT Support"],
         repo: "https://github.com/lgbojueh/help-desk-ticket-system",
         lat: 32.7767,
@@ -1327,7 +1749,8 @@
       {
         title: "Task Manager CLI",
         label: "Command-Line Application",
-        description: "Java command-line task manager with local SQLite storage for creating, organizing, and managing tasks.",
+        description:
+          "Java command-line task manager with local SQLite storage for creating, organizing, and managing tasks.",
         tech: ["Java", "SQLite", "CLI", "OOP"],
         repo: "https://github.com/lgbojueh/task-manager-cli",
         lat: 40.7128,
@@ -1337,7 +1760,8 @@
       {
         title: "Weather App",
         label: "API Web Application",
-        description: "Weather application with live API data, a clean interface, and error handling for location and network requests.",
+        description:
+          "Weather application with live API data, a clean interface, and error handling for location and network requests.",
         tech: ["JavaScript", "REST API", "HTML", "CSS"],
         repo: "https://github.com/lgbojueh/weather-app",
         lat: 25.7617,
@@ -1347,7 +1771,8 @@
       {
         title: "Password Vault",
         label: "Cybersecurity Project",
-        description: "Secure command-line password manager using AES-256 encryption to protect and manage sensitive credentials.",
+        description:
+          "Secure command-line password manager using AES-256 encryption to protect and manage sensitive credentials.",
         tech: ["Python", "AES-256", "Security", "CLI"],
         repo: "https://github.com/lgbojueh/password-vault",
         lat: 51.5072,
@@ -1357,7 +1782,8 @@
       {
         title: "System Dashboard",
         label: "System Monitoring Tool",
-        description: "Python system resource monitoring tool that tracks CPU, RAM, and disk usage in real time.",
+        description:
+          "Python system resource monitoring tool that tracks CPU, RAM, and disk usage in real time.",
         tech: ["Python", "Monitoring", "CPU", "RAM"],
         repo: "https://github.com/lgbojueh/system-dashboard",
         lat: 52.52,
@@ -1367,7 +1793,8 @@
       {
         title: "Game Groove Mock",
         label: "Frontend Game Discovery App",
-        description: "TypeScript frontend mock application for exploring and presenting board game content through a clean interactive interface.",
+        description:
+          "TypeScript frontend mock application for exploring and presenting board game content through a clean interactive interface.",
         tech: ["TypeScript", "Frontend", "UI Design"],
         repo: "https://github.com/lgbojueh/Game-Groove-Mock",
         lat: 35.6762,
@@ -1376,46 +1803,91 @@
       }
     ];
 
-    /* ─── CREATE PROJECT CARDS ─────────────────────────────── */
+    /* Create website cards from the shared project list */
     const projectsTrack = document.getElementById("projectsTrack");
 
-    projectsTrack.innerHTML = projects.map((project, index) => `
-      <article class="project-card">
-        <div>
-          <div class="project-number">${String(index + 1).padStart(2, "0")}</div>
-          <h3>${project.title}</h3>
-          <div class="project-type">${project.label}</div>
-          <p>${project.description}</p>
+    projectsTrack.innerHTML = window.portfolioProjects
+      .map(
+        (project, index) => `
+          <article class="project-card">
+            <div>
+              <div class="project-number">
+                ${String(index + 1).padStart(2, "0")}
+              </div>
 
-          <div class="tags">
-            ${project.tech.map(item => `<span class="tag">${item}</span>`).join("")}
-          </div>
-        </div>
+              <h3>${project.title}</h3>
 
-        <a href="${project.repo}" target="_blank" rel="noopener" class="project-link">
-          View on GitHub →
-        </a>
-      </article>
-    `).join("");
+              <div class="project-type">
+                ${project.label}
+              </div>
 
-    /* ─── GLOBE SETUP ──────────────────────────────────────── */
+              <p>${project.description}</p>
+
+              <div class="tags">
+                ${project.tech
+                  .map(item => `<span class="tag">${item}</span>`)
+                  .join("")}
+              </div>
+            </div>
+
+            <a
+              href="${project.repo}"
+              target="_blank"
+              rel="noopener"
+              class="project-link"
+            >
+              View on GitHub →
+            </a>
+          </article>
+        `
+      )
+      .join("");
+  </script>
+
+  <!-- THREE.JS IMPORT MAP -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- THREE.JS GLOBE -->
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const projects = window.portfolioProjects;
     const projectCard = document.getElementById("projectCard");
+    const globeContainer = document.getElementById("globe");
 
     function updateProjectCard(project) {
       projectCard.innerHTML = `
         <small>${project.label}</small>
+
         <h3>${project.title}</h3>
+
         <p>${project.description}</p>
+
         <div class="tags">
-          ${project.tech.map(item => `<span class="tag">${item}</span>`).join("")}
+          ${project.tech
+            .map(item => `<span class="tag">${item}</span>`)
+            .join("")}
         </div>
-        <a href="${project.repo}" target="_blank" rel="noopener" class="project-pop-link">
+
+        <a
+          href="${project.repo}"
+          target="_blank"
+          rel="noopener"
+          class="project-pop-link"
+        >
           View repository on GitHub →
         </a>
       `;
     }
 
-    const globeContainer = document.getElementById("globe");
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(
@@ -1433,11 +1905,16 @@
     });
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
+    renderer.setSize(
+      globeContainer.clientWidth,
+      globeContainer.clientHeight
+    );
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+
     globeContainer.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
+
     controls.enableDamping = true;
     controls.enablePan = false;
     controls.minDistance = 4.5;
@@ -1488,7 +1965,12 @@
 
     function addRing(x, y, z) {
       const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(globeRadius * 1.01, 0.005, 12, 180),
+        new THREE.TorusGeometry(
+          globeRadius * 1.01,
+          0.005,
+          12,
+          180
+        ),
         new THREE.MeshBasicMaterial({
           color: 0x2563eb,
           transparent: true,
@@ -1519,7 +2001,12 @@
     const pins = [];
 
     projects.forEach(project => {
-      const position = latLonToVector3(project.lat, project.lon, globeRadius + 0.06);
+      const position = latLonToVector3(
+        project.lat,
+        project.lon,
+        globeRadius + 0.06
+      );
+
       const normal = position.clone().normalize();
 
       const pin = new THREE.Mesh(
@@ -1560,9 +2047,13 @@
       );
 
       halo.position.copy(position);
-      halo.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
-      halo.userData.project = project;
 
+      halo.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, 1),
+        normal
+      );
+
+      halo.userData.project = project;
       globeGroup.add(halo);
 
       clickables.push(pin, halo);
@@ -1570,8 +2061,17 @@
     });
 
     function addArc(startProject, endProject, color) {
-      const start = latLonToVector3(startProject.lat, startProject.lon, globeRadius + 0.1);
-      const end = latLonToVector3(endProject.lat, endProject.lon, globeRadius + 0.1);
+      const start = latLonToVector3(
+        startProject.lat,
+        startProject.lon,
+        globeRadius + 0.1
+      );
+
+      const end = latLonToVector3(
+        endProject.lat,
+        endProject.lon,
+        globeRadius + 0.1
+      );
 
       const middle = start
         .clone()
@@ -1579,10 +2079,16 @@
         .normalize()
         .multiplyScalar(globeRadius + 0.72);
 
-      const curve = new THREE.QuadraticBezierCurve3(start, middle, end);
+      const curve = new THREE.QuadraticBezierCurve3(
+        start,
+        middle,
+        end
+      );
 
       const line = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(curve.getPoints(80)),
+        new THREE.BufferGeometry().setFromPoints(
+          curve.getPoints(80)
+        ),
         new THREE.LineBasicMaterial({
           color,
           transparent: true,
@@ -1594,11 +2100,11 @@
     }
 
     /* Automatically connect every project pin */
-    for (let i = 0; i < projects.length; i++) {
+    for (let index = 0; index < projects.length; index++) {
       addArc(
-        projects[i],
-        projects[(i + 1) % projects.length],
-        projects[i].color
+        projects[index],
+        projects[(index + 1) % projects.length],
+        projects[index].color
       );
     }
 
@@ -1606,19 +2112,28 @@
     const pointer = new THREE.Vector2();
 
     function updatePointer(event) {
-      const rect = renderer.domElement.getBoundingClientRect();
+      const rectangle =
+        renderer.domElement.getBoundingClientRect();
 
-      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      pointer.x =
+        ((event.clientX - rectangle.left) / rectangle.width) * 2 - 1;
+
+      pointer.y =
+        -((event.clientY - rectangle.top) / rectangle.height) * 2 + 1;
     }
 
-    renderer.domElement.addEventListener("pointermove", event => {
-      updatePointer(event);
-      raycaster.setFromCamera(pointer, camera);
+    renderer.domElement.addEventListener(
+      "pointermove",
+      event => {
+        updatePointer(event);
+        raycaster.setFromCamera(pointer, camera);
 
-      const hits = raycaster.intersectObjects(clickables);
-      renderer.domElement.style.cursor = hits.length ? "pointer" : "grab";
-    });
+        const hits = raycaster.intersectObjects(clickables);
+
+        renderer.domElement.style.cursor =
+          hits.length > 0 ? "pointer" : "grab";
+      }
+    );
 
     renderer.domElement.addEventListener("click", event => {
       updatePointer(event);
@@ -1626,33 +2141,47 @@
 
       const hits = raycaster.intersectObjects(clickables);
 
-      if (hits.length) {
-        updateProjectCard(hits[0].object.userData.project);
+      if (hits.length > 0) {
+        updateProjectCard(
+          hits[0].object.userData.project
+        );
       }
     });
 
     function resizeGlobe() {
-      camera.aspect = globeContainer.clientWidth / globeContainer.clientHeight;
+      const width = globeContainer.clientWidth;
+      const height = globeContainer.clientHeight;
+
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(globeContainer.clientWidth, globeContainer.clientHeight);
+
+      renderer.setSize(width, height);
     }
 
     window.addEventListener("resize", resizeGlobe);
 
     const clock = new THREE.Clock();
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     function animateGlobe() {
       const time = clock.getElapsedTime();
 
-      globeGroup.rotation.y += 0.003;
+      if (!reduceMotion) {
+        globeGroup.rotation.y += 0.003;
 
-      pins.forEach((item, index) => {
-        const scale = 1 + Math.sin(time * 2.5 + index * 0.9) * 0.2;
-        item.pin.scale.setScalar(scale);
+        pins.forEach((item, index) => {
+          const pinScale =
+            1 + Math.sin(time * 2.5 + index * 0.9) * 0.2;
 
-        const haloScale = 1 + Math.sin(time * 2.2 + index) * 0.25;
-        item.halo.scale.setScalar(haloScale);
-      });
+          const haloScale =
+            1 + Math.sin(time * 2.2 + index) * 0.25;
+
+          item.pin.scale.setScalar(pinScale);
+          item.halo.scale.setScalar(haloScale);
+        });
+      }
 
       controls.update();
       renderer.render(scene, camera);
@@ -1664,52 +2193,169 @@
 
   <!-- SITE INTERACTIONS -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    /* Current year */
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
-    /* Nav shrink */
+    /* Navigation shrink */
     const nav = document.getElementById("nav");
 
-    window.addEventListener("scroll", () => {
-      nav.classList.toggle("scrolled", window.scrollY > 60);
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        nav.classList.toggle(
+          "scrolled",
+          window.scrollY > 60
+        );
+      },
+      { passive: true }
+    );
 
-    /* Original style reveal animations */
+    /* Original scroll reveal */
     const revealElements = document.querySelectorAll(
       ".reveal, .reveal-left, .reveal-right, .reveal-scale"
     );
 
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducedMotion) {
+      revealElements.forEach(element => {
+        element.classList.add("visible");
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -40px 0px"
-    });
+    } else {
+      const revealObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
 
-    revealElements.forEach(element => revealObserver.observe(element));
+      revealElements.forEach(element => {
+        revealObserver.observe(element);
+      });
+    }
 
-    /* Resume modal */
-    const resumeModal = document.getElementById("resumeModal");
-    const resumeFrame = document.getElementById("resumeFrame");
-    const viewResumeButton = document.getElementById("viewResume");
-    const closeResumeButton = document.getElementById("closeResume");
+    /* Resume dropdown and modal */
+    const resumeMenu =
+      document.getElementById("resumeMenu");
+
+    const resumeMenuButton =
+      document.getElementById("resumeMenuButton");
+
+    const resumeDropdown =
+      document.getElementById("resumeDropdown");
+
+    const resumeModal =
+      document.getElementById("resumeModal");
+
+    const resumeFrame =
+      document.getElementById("resumeFrame");
+
+    const viewResumeButton =
+      document.getElementById("viewResume");
+
+    const closeResumeButton =
+      document.getElementById("closeResume");
+
+    const resumeURL = new URL(
+      "./Resume1.pdf",
+      document.baseURI
+    ).href;
+
+    function openResumeMenu() {
+      resumeMenu.classList.add("open");
+
+      resumeMenuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+    }
+
+    function closeResumeMenu() {
+      resumeMenu.classList.remove("open");
+
+      resumeMenuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
+
+    function toggleResumeMenu() {
+      if (resumeMenu.classList.contains("open")) {
+        closeResumeMenu();
+      } else {
+        openResumeMenu();
+      }
+    }
 
     function openResume() {
-      resumeFrame.src = "Resume1.pdf#view=FitH";
+      resumeFrame.src = `${resumeURL}#view=FitH`;
+
+      closeResumeMenu();
       resumeModal.classList.add("open");
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("modal-open");
+
+      setTimeout(() => {
+        closeResumeButton.focus();
+      }, 100);
     }
 
     function closeResume() {
       resumeModal.classList.remove("open");
-      document.body.style.overflow = "";
+      document.body.classList.remove("modal-open");
+
+      resumeMenuButton.focus();
     }
 
-    viewResumeButton.addEventListener("click", openResume);
-    closeResumeButton.addEventListener("click", closeResume);
+    resumeMenuButton.addEventListener(
+      "click",
+      event => {
+        event.stopPropagation();
+        toggleResumeMenu();
+      }
+    );
+
+    resumeDropdown.addEventListener(
+      "click",
+      event => {
+        event.stopPropagation();
+      }
+    );
+
+    viewResumeButton.addEventListener(
+      "click",
+      openResume
+    );
+
+    closeResumeButton.addEventListener(
+      "click",
+      closeResume
+    );
+
+    resumeDropdown
+      .querySelectorAll("a")
+      .forEach(link => {
+        link.addEventListener(
+          "click",
+          closeResumeMenu
+        );
+      });
+
+    document.addEventListener("click", event => {
+      if (!resumeMenu.contains(event.target)) {
+        closeResumeMenu();
+      }
+    });
 
     resumeModal.addEventListener("click", event => {
       if (event.target === resumeModal) {
@@ -1718,8 +2364,12 @@
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && resumeModal.classList.contains("open")) {
-        closeResume();
+      if (event.key === "Escape") {
+        closeResumeMenu();
+
+        if (resumeModal.classList.contains("open")) {
+          closeResume();
+        }
       }
     });
 
@@ -1728,7 +2378,10 @@
     const context = canvas.getContext("2d");
 
     let particles = [];
-    let mouse = { x: -1000, y: -1000 };
+    let mouse = {
+      x: -1000,
+      y: -1000
+    };
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -1736,12 +2389,27 @@
     }
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
 
-    document.addEventListener("mousemove", event => {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    });
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
+
+    document.addEventListener(
+      "mousemove",
+      event => {
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
+      }
+    );
+
+    document.addEventListener(
+      "mouseleave",
+      () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+      }
+    );
 
     class Particle {
       constructor() {
@@ -1762,50 +2430,116 @@
         this.x += this.speedX;
         this.y += this.speedY;
 
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const differenceX = mouse.x - this.x;
+        const differenceY = mouse.y - this.y;
+
+        const distance = Math.sqrt(
+          differenceX * differenceX +
+          differenceY * differenceY
+        );
 
         if (distance < 140) {
-          this.opacity = this.baseOpacity + (1 - distance / 140) * 0.3;
-          this.x -= dx * 0.005;
-          this.y -= dy * 0.005;
+          this.opacity =
+            this.baseOpacity +
+            (1 - distance / 140) * 0.3;
+
+          this.x -= differenceX * 0.005;
+          this.y -= differenceY * 0.005;
         } else {
-          this.opacity += (this.baseOpacity - this.opacity) * 0.05;
+          this.opacity +=
+            (this.baseOpacity - this.opacity) * 0.05;
         }
 
-        if (this.x < -10) this.x = canvas.width + 10;
-        if (this.x > canvas.width + 10) this.x = -10;
-        if (this.y < -10) this.y = canvas.height + 10;
-        if (this.y > canvas.height + 10) this.y = -10;
+        if (this.x < -10) {
+          this.x = canvas.width + 10;
+        }
+
+        if (this.x > canvas.width + 10) {
+          this.x = -10;
+        }
+
+        if (this.y < -10) {
+          this.y = canvas.height + 10;
+        }
+
+        if (this.y > canvas.height + 10) {
+          this.y = -10;
+        }
       }
 
       draw() {
         context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        context.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+
+        context.arc(
+          this.x,
+          this.y,
+          this.size,
+          0,
+          Math.PI * 2
+        );
+
+        context.fillStyle =
+          `rgba(37, 99, 235, ${this.opacity})`;
+
         context.fill();
       }
     }
 
-    const particleCount = Math.min(70, Math.floor(window.innerWidth / 20));
+    const particleCount = Math.min(
+      70,
+      Math.floor(window.innerWidth / 20)
+    );
 
-    for (let i = 0; i < particleCount; i++) {
+    for (
+      let index = 0;
+      index < particleCount;
+      index++
+    ) {
       particles.push(new Particle());
     }
 
     function drawLines() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      for (
+        let first = 0;
+        first < particles.length;
+        first++
+      ) {
+        for (
+          let second = first + 1;
+          second < particles.length;
+          second++
+        ) {
+          const differenceX =
+            particles[first].x -
+            particles[second].x;
+
+          const differenceY =
+            particles[first].y -
+            particles[second].y;
+
+          const distance = Math.sqrt(
+            differenceX * differenceX +
+            differenceY * differenceY
+          );
 
           if (distance < 150) {
             context.beginPath();
-            context.moveTo(particles[i].x, particles[i].y);
-            context.lineTo(particles[j].x, particles[j].y);
-            context.strokeStyle = `rgba(37, 99, 235, ${0.045 * (1 - distance / 150)})`;
+
+            context.moveTo(
+              particles[first].x,
+              particles[first].y
+            );
+
+            context.lineTo(
+              particles[second].x,
+              particles[second].y
+            );
+
+            context.strokeStyle =
+              `rgba(37, 99, 235, ${
+                0.045 * (1 - distance / 150)
+              })`;
+
             context.lineWidth = 0.7;
             context.stroke();
           }
@@ -1814,7 +2548,12 @@
     }
 
     function animateParticles() {
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
 
       particles.forEach(particle => {
         particle.update();
@@ -1825,7 +2564,9 @@
       requestAnimationFrame(animateParticles);
     }
 
-    animateParticles();
+    if (!reducedMotion) {
+      animateParticles();
+    }
   </script>
 </body>
 </html>
