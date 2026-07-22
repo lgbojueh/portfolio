@@ -354,6 +354,33 @@
       color: #6c63ff;
     }
 
+    /* ─── NEW: PROJECT STATUS BADGE ────────────────────────── */
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .project-status.new {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .project-status.new::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #43a047;
+      animation: blink 2s infinite;
+    }
+    .project-status.active {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
     /* ─── SECTION DIVIDER ──────────────────────────────────── */
     .section-divider {
       width: 100%;
@@ -412,16 +439,33 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 420px;
+      min-height: 440px;
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                   box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                   border-color 0.35s;
+      position: relative;
     }
     .project-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 24px 60px rgba(0,0,0,0.08);
       border-color: #6c63ff;
     }
+
+    /* NEW badge on card */
+    .card-new-badge {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: linear-gradient(135deg, #43a047, #66bb6a);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(67, 160, 71, 0.35);
+    }
+
     .project-number {
       font-size: 0.75rem;
       font-weight: 800;
@@ -451,6 +495,14 @@
     .project-card:hover .tag {
       background: #eeedff;
     }
+
+    /* ─── NEW: CARD LINK GROUP ──────────────────────────────── */
+    .card-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
     .project-link {
       display: inline-flex;
       align-items: center;
@@ -461,6 +513,16 @@
       transition: gap 0.2s;
     }
     .project-link:hover { gap: 12px; }
+    .project-link-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #888;
+      transition: color 0.2s;
+    }
+    .project-link-secondary:hover { color: #6c63ff; }
 
     /* ─── SKILLS GRID ──────────────────────────────────────── */
     .skills-grid {
@@ -577,6 +639,127 @@
       line-height: 1.6;
     }
 
+    /* ─── RESUME MODAL ──────────────────────────────────────── */
+    .resume-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+    .resume-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .resume-modal {
+      background: #fff;
+      border-radius: 24px;
+      width: min(900px, 100%);
+      height: min(88vh, 700px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.25);
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .resume-modal-overlay.open .resume-modal {
+      transform: translateY(0) scale(1);
+    }
+    .resume-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      border-bottom: 1px solid #e8e8e4;
+      flex-shrink: 0;
+    }
+    .resume-modal-header h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .resume-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .resume-btn:hover { transform: translateY(-1px); }
+    .resume-btn-primary {
+      background: #1a1a1a;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+    .resume-btn-primary:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .resume-btn-ghost {
+      background: #f4f4f2;
+      color: #444;
+    }
+    .resume-btn-ghost:hover { background: #eaeae8; }
+    .resume-close-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #f4f4f2;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #666;
+      transition: background 0.2s, color 0.2s;
+      margin-left: 4px;
+    }
+    .resume-close-btn:hover { background: #e8e8e4; color: #1a1a1a; }
+    .resume-modal-body {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .resume-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .resume-fallback {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 16px;
+      color: #888;
+      font-size: 0.95rem;
+      padding: 40px;
+      text-align: center;
+    }
+    .resume-fallback-icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
     /* ─── CONTACT ──────────────────────────────────────────── */
     .contact-section {
       background: #1a1a1a;
@@ -604,12 +787,94 @@
       font-size: 0.9rem;
       color: #ccc;
       transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s;
+      cursor: pointer;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
     }
     .contact-link:hover {
       border-color: #6c63ff;
       color: #fff;
       background: rgba(108, 99, 255, 0.12);
       transform: translateY(-2px);
+    }
+
+    /* Resume sub-links in contact */
+    .resume-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .resume-group-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid #333;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ccc;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s;
+      cursor: pointer;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+    }
+    .resume-group-btn:hover {
+      border-color: #6c63ff;
+      color: #fff;
+      background: rgba(108, 99, 255, 0.12);
+      transform: translateY(-2px);
+    }
+    .resume-dropdown {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      background: #242424;
+      border: 1px solid #333;
+      border-radius: 14px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      min-width: 200px;
+      z-index: 10;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .resume-group:hover .resume-dropdown,
+    .resume-group:focus-within .resume-dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .resume-dropdown a,
+    .resume-dropdown button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ccc;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+    .resume-dropdown a:hover,
+    .resume-dropdown button:hover {
+      background: rgba(108, 99, 255, 0.15);
+      color: #fff;
+    }
+    .resume-dropdown .divider {
+      height: 1px;
+      background: #333;
+      margin: 0;
     }
 
     /* ─── FOOTER ───────────────────────────────────────────── */
@@ -632,7 +897,7 @@
       .globe-wrapper { height: 440px; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .project-card { flex: 0 0 320px; min-height: 380px; }
+      .project-card { flex: 0 0 320px; min-height: 400px; }
       .contact-section { padding: 48px 32px; }
     }
     @media (max-width: 640px) {
@@ -642,9 +907,13 @@
       .globe-wrapper { height: 380px; }
       .skills-grid { grid-template-columns: 1fr; }
       .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-      .project-card { flex: 0 0 290px; padding: 28px 24px; min-height: 360px; }
+      .project-card { flex: 0 0 290px; padding: 28px 24px; min-height: 380px; }
       .contact-section { padding: 36px 24px; border-radius: 20px; }
       section { padding: 64px 0; }
+      .resume-modal { height: 95vh; border-radius: 18px; }
+      .resume-modal-header { padding: 16px 20px; }
+      .resume-modal-header h3 { font-size: 1rem; }
+      .resume-btn { padding: 8px 14px; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -652,6 +921,38 @@
 <body>
 
   <canvas id="particles"></canvas>
+
+  <!-- ─── RESUME MODAL ──────────────────────────────────────── -->
+  <div class="resume-modal-overlay" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume Viewer">
+    <div class="resume-modal">
+      <div class="resume-modal-header">
+        <h3>📄 Lyoneh Gbojueh — Resume</h3>
+        <div class="resume-modal-actions">
+          <a href="./Resume1.pdf" download="Lyoneh_Gbojueh_Resume.pdf" class="resume-btn resume-btn-primary">
+            ⬇ Download PDF
+          </a>
+          <a href="./Resume1.pdf" target="_blank" rel="noopener" class="resume-btn resume-btn-ghost">
+            ↗ Open in Tab
+          </a>
+          <button class="resume-close-btn" id="closeResumeModal" aria-label="Close resume viewer">✕</button>
+        </div>
+      </div>
+      <div class="resume-modal-body">
+        <iframe
+          id="resumeIframe"
+          src=""
+          title="Lyoneh Gbojueh Resume"
+        ></iframe>
+        <div class="resume-fallback" id="resumeFallback">
+          <div class="resume-fallback-icon">📄</div>
+          <p>Preview not available in this browser.</p>
+          <a href="./Resume1.pdf" download="Lyoneh_Gbojueh_Resume.pdf" class="resume-btn resume-btn-primary">
+            ⬇ Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav class="nav" id="nav">
@@ -678,9 +979,9 @@
         solving <em>technical</em> problems.
       </h1>
       <p class="hero-sub reveal stagger-2">
-        Computer Science graduate from Metropolitan State University of Denver 
-        with experience building web applications, working with databases, 
-        and collaborating in Agile teams. Seeking opportunities 
+        Computer Science graduate from Metropolitan State University of Denver
+        with experience building web applications, working with databases,
+        and collaborating in Agile teams. Seeking opportunities
         in software engineering, IT support, cloud, cybersecurity, and technical operations.
       </p>
       <div class="hero-actions reveal stagger-3">
@@ -725,6 +1026,8 @@
 
     <div class="projects-scroll-wrapper reveal stagger-3">
       <div class="projects-track">
+
+        <!-- PROJECT 01 — Brew Trade Hub -->
         <div class="project-card">
           <div>
             <div class="project-number">01</div>
@@ -739,9 +1042,12 @@
               <span class="tag">Agile/Scrum</span>
             </div>
           </div>
-          <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <div class="card-links">
+            <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+          </div>
         </div>
 
+        <!-- PROJECT 02 — Game Groove -->
         <div class="project-card">
           <div>
             <div class="project-number">02</div>
@@ -756,9 +1062,12 @@
               <span class="tag">Git</span>
             </div>
           </div>
-          <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <div class="card-links">
+            <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+          </div>
         </div>
 
+        <!-- PROJECT 03 — Secure File Manager -->
         <div class="project-card">
           <div>
             <div class="project-number">03</div>
@@ -772,8 +1081,43 @@
               <span class="tag">Authentication</span>
             </div>
           </div>
-          <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+          <div class="card-links">
+            <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+          </div>
         </div>
+
+        <!-- ─── PROJECT 04 — NEW PROJECT (replace details below) ─── -->
+        <!--
+          INSTRUCTIONS: Replace the following placeholders with your real project info:
+            • "Your New Project Title"  → actual project name
+            • "Project Type / Category" → e.g. "CLI Tool", "REST API", "Mobile App"
+            • The <p> description       → 1–2 sentence summary
+            • The <span class="tag">    → actual technologies used
+            • href="https://github.com/lgbojueh/YOUR-REPO" → real repo URL
+            • If you have a live demo, uncomment the demo link below
+        -->
+        <div class="project-card">
+          <span class="card-new-badge">New</span>
+          <div>
+            <div class="project-number">04</div>
+            <h3>Your New Project Title</h3>
+            <div class="project-type">Project Type / Category</div>
+            <p>Brief description of what this project does, the problem it solves, and what makes it interesting or technically challenging.</p>
+            <div class="tags">
+              <span class="tag">Technology 1</span>
+              <span class="tag">Technology 2</span>
+              <span class="tag">Technology 3</span>
+              <span class="tag">Technology 4</span>
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/lgbojueh/YOUR-REPO-NAME" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+            <!-- Uncomment if you have a live demo:
+            <a href="https://your-demo-url.com" target="_blank" rel="noopener" class="project-link-secondary">Live Demo ↗</a>
+            -->
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -922,7 +1266,27 @@
         <a href="mailto:lyonehgbojueh32@gmail.com" class="contact-link">✉ Email ↗</a>
         <a href="https://github.com/lgbojueh" target="_blank" rel="noopener" class="contact-link">⌨ GitHub ↗</a>
         <a href="https://www.linkedin.com/in/lyoneh-gbojueh-988275255" target="_blank" rel="noopener" class="contact-link">💼 LinkedIn ↗</a>
-        <a href="./Resume1.pdf" download class="contact-link">📄 Resume PDF ↓</a>
+
+        <!-- ─── RESUME GROUP with View + Download ─────────────── -->
+        <div class="resume-group">
+          <button class="resume-group-btn" aria-haspopup="true">
+            📄 Resume ▾
+          </button>
+          <div class="resume-dropdown" role="menu">
+            <button onclick="openResumeModal()" role="menuitem">
+              👁 View Resume
+            </button>
+            <div class="divider"></div>
+            <a href="./Resume1.pdf" download="Lyoneh_Gbojueh_Resume.pdf" role="menuitem">
+              ⬇ Download PDF
+            </a>
+            <div class="divider"></div>
+            <a href="./Resume1.pdf" target="_blank" rel="noopener" role="menuitem">
+              ↗ Open in New Tab
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -949,6 +1313,7 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
     // ─── GLOBE SETUP ──────────────────────────────────────────
+    // NOTE: Add your 4th project to this array with its lat/lon coordinates
     const projects = [
       {
         title: 'Brew Trade Hub',
@@ -973,6 +1338,17 @@
         tech: ['Python', 'Docker', 'REST APIs', 'Authentication', 'Security'],
         lat: 51.5072, lon: -0.1276,
         color: 0x4ecdc4
+      },
+      // ─── ADD YOUR NEW PROJECT HERE ────────────────────────
+      // Replace the values below with your actual project details.
+      // Pick any lat/lon for the pin location (city of inspiration, etc.)
+      {
+        title: 'Your New Project',
+        label: 'Project Type / Category',
+        description: 'Short description of what this project does and what technologies or techniques make it stand out.',
+        tech: ['Tech 1', 'Tech 2', 'Tech 3'],
+        lat: -33.8688, lon: 151.2093, // Example: Sydney — change as needed
+        color: 0xf7b731
       }
     ];
 
@@ -1113,7 +1489,8 @@
     }
     addArc(projects[0], projects[1], 0x6c63ff);
     addArc(projects[1], projects[2], 0xff6b9d);
-    addArc(projects[2], projects[0], 0x4ecdc4);
+    addArc(projects[2], projects[3], 0x4ecdc4);
+    addArc(projects[3], projects[0], 0xf7b731);
 
     // Raycaster for clicks
     const raycaster = new THREE.Raycaster();
@@ -1161,17 +1538,17 @@
     animate();
   </script>
 
-  <!-- ─── SCROLL REVEAL + PARTICLES + NAV ───────────────────── -->
+  <!-- ─── SCROLL REVEAL + PARTICLES + NAV + RESUME MODAL ───── -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Nav shrink
+    // ─── NAV SHRINK ───────────────────────────────────────────
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    // Scroll reveal
+    // ─── SCROLL REVEAL ────────────────────────────────────────
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -1180,7 +1557,59 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => observer.observe(el));
 
-    // Particles
+    // ─── RESUME MODAL ─────────────────────────────────────────
+    const resumeModal   = document.getElementById('resumeModal');
+    const resumeIframe  = document.getElementById('resumeIframe');
+    const resumeFallback = document.getElementById('resumeFallback');
+    const closeBtn      = document.getElementById('closeResumeModal');
+    const RESUME_PATH   = './Resume1.pdf';
+
+    function openResumeModal() {
+      // Load the PDF into the iframe only when opened (performance)
+      if (!resumeIframe.src || resumeIframe.src === window.location.href) {
+        resumeIframe.src = RESUME_PATH;
+      }
+      resumeModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Detect if iframe fails (mobile browsers that can't render PDFs inline)
+      resumeIframe.onload = () => {
+        try {
+          // If contentDocument is null, PDF rendered natively — that's fine
+          resumeIframe.style.display = 'block';
+          resumeFallback.style.display = 'none';
+        } catch (e) {
+          resumeIframe.style.display = 'none';
+          resumeFallback.style.display = 'flex';
+        }
+      };
+      resumeIframe.onerror = () => {
+        resumeIframe.style.display = 'none';
+        resumeFallback.style.display = 'flex';
+      };
+    }
+
+    function closeResumeModal() {
+      resumeModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Expose globally so onclick= works
+    window.openResumeModal = openResumeModal;
+
+    closeBtn.addEventListener('click', closeResumeModal);
+
+    // Close on overlay click (outside the modal box)
+    resumeModal.addEventListener('click', e => {
+      if (e.target === resumeModal) closeResumeModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && resumeModal.classList.contains('open')) closeResumeModal();
+    });
+
+    // ─── PARTICLES ────────────────────────────────────────────
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particles = [];
