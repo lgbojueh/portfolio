@@ -74,35 +74,30 @@ section{padding:100px 0}
 
 /* Globe */
 .globe-wrapper{position:relative;width:100%;height:500px;overflow:hidden;background:linear-gradient(135deg,#edf3fb 0%,#e4edf8 48%,#f0f4fa 100%);border:1px solid #d9e3ef;border-radius:20px;box-shadow:0 22px 60px rgba(37,99,235,.1)}
-.globe-wrapper::before{position:absolute;top:50%;left:50%;width:280px;height:280px;content:"";background:rgba(37,99,235,.12);border-radius:50%;filter:blur(85px);transform:translate(-50%,-50%)}
+.globe-wrapper::before{position:absolute;top:40%;left:50%;width:280px;height:280px;content:"";background:rgba(37,99,235,.12);border-radius:50%;filter:blur(85px);transform:translate(-50%,-50%)}
 #globe{position:absolute;inset:0;z-index:1}
 #globe canvas{display:block;width:100%!important;height:100%!important;cursor:grab}
 #globe canvas:active{cursor:grabbing}
 .globe-label,.globe-hint{position:absolute;z-index:3;padding:7px 12px;background:rgba(255,255,255,.88);border:1px solid rgba(15,23,42,.08);border-radius:8px;backdrop-filter:blur(12px);pointer-events:none}
 .globe-label{top:16px;left:16px;color:var(--blue);font-size:.74rem;font-weight:800}
 .globe-hint{top:16px;right:16px;color:var(--muted);font-size:.7rem;font-weight:700}
-.project-pop{position:absolute;right:16px;bottom:16px;left:16px;z-index:4;padding:18px 20px;background:rgba(255,255,255,.94);border:1px solid rgba(37,99,235,.16);border-radius:14px;box-shadow:0 12px 40px rgba(15,23,42,.1);backdrop-filter:blur(16px)}
+
+/* Ink hand */
+.hh{position:absolute;left:8%;bottom:-6px;z-index:2;width:84%;pointer-events:none}
+.hh svg{display:block;width:100%;height:auto;overflow:visible}
+#hhRoot,#hhFingers,#hhThumb{will-change:transform}
+#hhFingers{transform-origin:200px 235px}
+#hhThumb{transform-origin:310px 240px}
+.ripple{position:absolute;z-index:5;width:14px;height:14px;margin:-7px;border:2px solid var(--blue);border-radius:50%;pointer-events:none;animation:ripple .7s ease-out forwards}
+@keyframes ripple{to{transform:scale(5);opacity:0}}
+
+/* Project card (sits under the globe) */
+.project-pop{position:relative;margin-top:14px;padding:18px 20px;background:rgba(255,255,255,.94);border:1px solid rgba(37,99,235,.16);border-radius:14px;box-shadow:0 12px 40px rgba(15,23,42,.1);backdrop-filter:blur(16px)}
 .project-pop small{color:var(--blue);font-size:.68rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
 .project-pop h3{margin:5px 0;font-family:"DM Serif Display",serif;font-size:1.25rem;font-weight:400}
 .project-pop p{margin-bottom:10px;color:var(--muted);font-size:.82rem;line-height:1.6}
 .project-pop-link{display:inline-flex;margin-top:12px;color:var(--blue);font-size:.78rem;font-weight:800}
 .project-pop-link:hover{text-decoration:underline}
-
-/* Hand cursor */
-.hand{position:absolute;top:0;left:0;z-index:6;width:56px;opacity:0;pointer-events:none;transform-origin:28px 2px;transition:opacity .2s ease;will-change:transform;filter:drop-shadow(0 8px 10px rgba(15,23,42,.25))}
-.hand.show{opacity:1}
-.hand svg{display:block;overflow:visible}
-.hand svg g{fill:#fff;stroke:#0f172a;stroke-width:2;stroke-linejoin:round;transition:opacity .12s ease}
-.hand .grab{opacity:0}
-.hand.grabbing .point{opacity:0}
-.hand.grabbing .grab{opacity:1}
-.hand .tip{fill:transparent;stroke:none;transition:fill .15s ease}
-.hand.over-pin .tip{fill:rgba(37,99,235,.55)}
-.hand.poke svg{animation:poke .3s ease}
-@keyframes poke{50%{transform:translateY(6px) scale(.94)}}
-.ripple{position:absolute;z-index:5;width:14px;height:14px;margin:-7px;border:2px solid var(--blue);border-radius:50%;pointer-events:none;animation:ripple .7s ease-out forwards}
-@keyframes ripple{to{transform:scale(5);opacity:0}}
-@media (hover:hover) and (pointer:fine){#globe canvas{cursor:none!important}}
 
 /* Project chips */
 .project-chips{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -289,43 +284,52 @@ footer{position:relative;z-index:1;padding:32px 0;color:#94a3b8;font-size:.8rem;
 
   <div class="globe-wrapper reveal-scale stagger-2">
     <div class="globe-label">Project Globe</div>
-    <div class="globe-hint">Drag to rotate · Click pins</div>
+    <div class="globe-hint">Drag to spin · Hover to nudge · Click pins</div>
     <div id="globe"></div>
 
-    <!-- Hand cursor -->
-    <div class="hand" id="hand" aria-hidden="true">
-      <svg viewBox="0 0 56 64" width="56" height="64">
-        <g class="point">
-          <rect x="22" y="2" width="12" height="34" rx="6" />
-          <rect x="33" y="25" width="9" height="18" rx="4.5" />
-          <rect x="41" y="28" width="9" height="16" rx="4.5" />
-          <rect x="48" y="31" width="7" height="13" rx="3.5" />
-          <rect x="8" y="34" width="11" height="20" rx="5.5" transform="rotate(-20 13 44)" />
-          <path d="M14 34 H52 V46 C52 58 44 64 33 64 H27 C19 64 14 58 14 50 Z" />
-          <circle class="tip" cx="28" cy="8" r="5" />
-        </g>
-        <g class="grab" transform="translate(0,-10)">
-          <rect x="12" y="18" width="10" height="24" rx="5" />
-          <rect x="23" y="14" width="10" height="26" rx="5" />
-          <rect x="34" y="16" width="10" height="26" rx="5" />
-          <rect x="45" y="22" width="10" height="22" rx="5" />
-          <path d="M12 34 H55 V48 C55 62 46 70 34 70 H28 C19 70 12 64 12 52 Z" />
-          <rect x="4" y="42" width="24" height="11" rx="5.5" transform="rotate(18 16 47)" />
+    <!-- Ink hand that twirls the globe -->
+    <div class="hh" aria-hidden="true">
+      <svg viewBox="0 0 400 300">
+        <defs>
+          <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#64748b" stroke-width="1.1" opacity=".55"/>
+          </pattern>
+        </defs>
+
+        <g id="hhRoot">
+          <!-- thumb -->
+          <g id="hhThumb" fill="none" stroke-linecap="round">
+            <path d="M310 240 Q338 190 300 120" stroke="#0b0f1a" stroke-width="26"/>
+            <path d="M310 240 Q338 190 300 120" stroke="url(#hatch)" stroke-width="22"/>
+            <path d="M303 128 Q326 190 306 232" stroke="#e2e8f0" stroke-width="1.2" opacity=".3"/>
+          </g>
+
+          <!-- palm + forearm -->
+          <path d="M146 250 C146 220 190 208 238 212 C290 208 328 222 332 250 L470 262 L470 330 L170 330 C150 300 144 275 146 250Z" fill="#0b0f1a"/>
+          <path d="M146 250 C146 220 190 208 238 212 C290 208 328 222 332 250 L470 262 L470 330 L170 330 C150 300 144 275 146 250Z" fill="url(#hatch)"/>
+          <path d="M190 232 Q240 222 300 236" fill="none" stroke="#e2e8f0" stroke-width="1.2" opacity=".25" stroke-linecap="round"/>
+
+          <!-- fingers -->
+          <g id="hhFingers" fill="none" stroke-linecap="round">
+            <path d="M170 240 Q138 205 118 130" stroke="#0b0f1a" stroke-width="24"/>
+            <path d="M170 240 Q138 205 118 130" stroke="url(#hatch)" stroke-width="20"/>
+            <path d="M195 232 Q172 190 166 138" stroke="#0b0f1a" stroke-width="25"/>
+            <path d="M195 232 Q172 190 166 138" stroke="url(#hatch)" stroke-width="21"/>
+            <path d="M220 232 Q214 190 216 145" stroke="#0b0f1a" stroke-width="23"/>
+            <path d="M220 232 Q214 190 216 145" stroke="url(#hatch)" stroke-width="19"/>
+            <path d="M244 238 Q248 205 258 170" stroke="#0b0f1a" stroke-width="19"/>
+            <path d="M244 238 Q248 205 258 170" stroke="url(#hatch)" stroke-width="15"/>
+            <g stroke="#e2e8f0" stroke-width="1.2" opacity=".32">
+              <path d="M160 222 Q132 190 112 138"/>
+              <path d="M184 214 Q165 180 160 144"/>
+              <path d="M210 214 Q204 184 207 150"/>
+            </g>
+          </g>
         </g>
       </svg>
     </div>
 
-    <article class="project-pop" id="projectCard">
-      <small>Full-Stack DevOps Project</small>
-      <h3>Docker Deployment Lab</h3>
-      <p>Multi-container Docker deployment lab with Nginx, PostgreSQL, Redis, and an interactive monitoring dashboard.</p>
-      <div class="tags">
-        <span class="tag">Docker</span>
-        <span class="tag">Nginx</span>
-        <span class="tag">PostgreSQL</span>
-      </div>
-      <a href="https://github.com/lgbojueh/docker-deployment-lab" target="_blank" rel="noopener" class="project-pop-link">View repository on GitHub →</a>
-    </article>
+    <article class="project-pop" id="projectCard" style="display:none"></article>
   </div>
 </header>
 
@@ -470,20 +474,17 @@ document.getElementById("projectsTrack").innerHTML = window.portfolioProjects.ma
 {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
 </script>
 
-<!-- THREE.JS GLOBE + HAND INTERACTION + PROJECT CHIPS -->
+<!-- GLOBE + INK HAND + CHIPS -->
 <script type="module">
 import * as THREE from "three";
 
 const projects = window.portfolioProjects;
 const wrap = document.querySelector(".globe-wrapper");
-const hand = document.getElementById("hand");
 const card = document.getElementById("projectCard");
 const box = document.getElementById("globe");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const wrapAngle = a => Math.atan2(Math.sin(a), Math.cos(a));
-
-document.querySelector(".globe-hint").textContent = "Drag to spin · Hover to nudge · Click pins";
 
 /* Project card + chip sync */
 let current = null;
@@ -501,16 +502,21 @@ function syncChips() {
   });
 }
 
-function showProject(p) {
-  if (p === current) return;
-  current = p;
-  syncChips();
+function renderCard(p) {
+  card.style.display = "";
   card.innerHTML = `
     <small>${p.label}</small>
     <h3>${p.title}</h3>
     <p>${p.description}</p>
     <div class="tags">${p.tech.map(t => `<span class="tag">${t}</span>`).join("")}</div>
     <a href="${p.repo}" target="_blank" rel="noopener" class="project-pop-link">View repository on GitHub →</a>`;
+}
+
+function showProject(p) {
+  if (p === current) return;
+  current = p;
+  syncChips();
+  renderCard(p);
 }
 
 /* Scene */
@@ -535,28 +541,57 @@ scene.add(fillLight);
 
 const group = new THREE.Group();
 group.rotation.x = 0.18;
+group.scale.setScalar(0.82);       /* smaller so it rests on the fingertips */
+group.position.y = 0.72;
 scene.add(group);
 const R = 2;
 
+/* Line-art continents drawn on a texture: [lon, lat] outlines */
+const LAND = [
+  [[-17,21],[-10,30],[-5,36],[10,37],[20,32],[32,31],[35,28],[43,12],[51,12],[40,-3],[40,-15],[35,-25],[20,-35],[18,-32],[12,-17],[9,-1],[9,4],[-8,4],[-17,14]],
+  [[-9,37],[-9,43],[-2,44],[-4,48],[2,51],[8,54],[10,58],[5,62],[15,69],[28,71],[40,67],[40,50],[30,45],[28,41],[22,37],[12,38],[8,44],[3,43]],
+  [[40,67],[60,70],[100,77],[140,72],[170,66],[160,55],[140,45],[122,30],[110,20],[105,10],[100,2],[95,16],[80,8],[72,20],[62,25],[57,24],[52,16],[43,13],[35,28],[36,36],[28,41],[30,45],[40,50]],
+  [[-168,66],[-140,70],[-95,72],[-80,68],[-60,55],[-55,48],[-70,42],[-76,35],[-81,25],[-97,26],[-97,18],[-87,21],[-83,9],[-78,8],[-92,15],[-105,22],[-117,32],[-124,40],[-125,49],[-140,60],[-165,60]],
+  [[-55,60],[-45,60],[-20,70],[-20,82],[-60,82],[-70,76]],
+  [[-78,8],[-60,10],[-50,0],[-35,-6],[-40,-22],[-58,-38],[-65,-55],[-72,-50],[-73,-37],[-71,-18],[-81,-5]],
+  [[114,-22],[122,-18],[136,-12],[142,-11],[153,-26],[150,-37],[138,-35],[116,-35]]
+];
+
+const cv = document.createElement("canvas");
+cv.width = 2048; cv.height = 1024;
+const cx = cv.getContext("2d");
+cx.fillStyle = "#f8fafc";
+cx.fillRect(0, 0, 2048, 1024);
+cx.strokeStyle = "#0f172a";
+cx.lineWidth = 3;
+cx.lineJoin = "round";
+cx.fillStyle = "rgba(15,23,42,0.07)";
+LAND.forEach(poly => {
+  cx.beginPath();
+  poly.forEach(([lo, la], i) => {
+    const X = ((lo + 180) / 360) * 2048, Y = ((90 - la) / 180) * 1024;
+    i ? cx.lineTo(X, Y) : cx.moveTo(X, Y);
+  });
+  cx.closePath();
+  cx.fill();
+  cx.stroke();
+});
+
+const tex = new THREE.CanvasTexture(cv);
+tex.colorSpace = THREE.SRGBColorSpace;
+tex.anisotropy = 8;
+
 const globe = new THREE.Mesh(
   new THREE.SphereGeometry(R, 96, 96),
-  new THREE.MeshStandardMaterial({ color: 0xdbe7f5, roughness: 0.72, metalness: 0.12, transparent: true, opacity: 0.93, emissive: 0xcbd8ea, emissiveIntensity: 0.15 })
+  new THREE.MeshStandardMaterial({ map: tex, color: 0xffffff, roughness: 0.8, metalness: 0, emissive: 0xffffff, emissiveIntensity: 0.3 })
 );
 group.add(globe);
 
+/* Dark graticule like the sketch */
 group.add(new THREE.Mesh(
-  new THREE.SphereGeometry(R * 1.005, 48, 48),
-  new THREE.MeshBasicMaterial({ color: 0x2563eb, wireframe: true, transparent: true, opacity: 0.12 })
+  new THREE.SphereGeometry(R * 1.005, 36, 24),
+  new THREE.MeshBasicMaterial({ color: 0x0f172a, wireframe: true, transparent: true, opacity: 0.28 })
 ));
-
-[[Math.PI / 2, 0, 0], [0, Math.PI / 2, 0], [0, 0, 0]].forEach(r => {
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(R * 1.01, 0.005, 12, 180),
-    new THREE.MeshBasicMaterial({ color: 0x2563eb, transparent: true, opacity: 0.18 })
-  );
-  ring.rotation.set(...r);
-  group.add(ring);
-});
 
 function latLon(lat, lon, radius) {
   const phi = (90 - lat) * Math.PI / 180;
@@ -618,16 +653,10 @@ const el = renderer.domElement;
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const vel = { x: 0, y: 0 };
-const hp = { x: 0, y: 0, tx: 0, ty: 0 };
 const AUTO = 0.003;
 
 let dragging = false, moved = 0, last = null;
 let interacted = false, hovered = null, focus = null;
-
-const local = e => {
-  const r = wrap.getBoundingClientRect();
-  return { x: e.clientX - r.left, y: e.clientY - r.top };
-};
 
 /* The sphere is included so pins on the far side can't be clicked through it */
 function pick(e) {
@@ -654,22 +683,20 @@ function focusOn(p) {
 function poke(e, p) {
   showProject(p);
   focusOn(p);
-  hand.classList.remove("poke");
-  void hand.offsetWidth;
-  hand.classList.add("poke");
-  const l = local(e);
+  const r = wrap.getBoundingClientRect();
   const ripple = document.createElement("span");
   ripple.className = "ripple";
-  ripple.style.left = l.x + "px";
-  ripple.style.top = l.y + "px";
+  ripple.style.left = e.clientX - r.left + "px";
+  ripple.style.top = e.clientY - r.top + "px";
   wrap.appendChild(ripple);
   setTimeout(() => ripple.remove(), 700);
 }
 
-/* Project chips (the globe is wrapped in a column so the chips sit under it) */
+/* Project chips (globe is wrapped in a column so card + chips sit under it) */
 const column = document.createElement("div");
 wrap.parentNode.insertBefore(column, wrap);
 column.appendChild(wrap);
+column.appendChild(card);
 
 chipRow = document.createElement("div");
 chipRow.className = "project-chips";
@@ -692,25 +719,20 @@ projects.forEach(project => {
   chipEls.push({ btn, project });
 });
 
-current = projects.find(p => p.title === "Docker Deployment Lab") || null;
+/* Start on the Docker lab */
+current = projects.find(p => p.title === "Docker Deployment Lab") || projects[0];
+renderCard(current);
 syncChips();
 
 /* Pointer events */
 el.addEventListener("pointerenter", e => {
   interacted = true;
-  const l = local(e);
-  if (!hand.classList.contains("show")) { hp.x = l.x; hp.y = l.y; }
-  hp.tx = l.x; hp.ty = l.y;
   last = { x: e.clientX, y: e.clientY };
-  hand.classList.remove("grabbing");
-  hand.classList.add("show");
 });
 
 el.addEventListener("pointerleave", () => {
   last = null;
   hovered = null;
-  hand.classList.remove("over-pin");
-  if (!dragging) hand.classList.remove("show");
 });
 
 el.addEventListener("pointerdown", e => {
@@ -719,18 +741,11 @@ el.addEventListener("pointerdown", e => {
   moved = 0;
   focus = null;
   last = { x: e.clientX, y: e.clientY };
-  const l = local(e);
-  if (!hand.classList.contains("show")) { hp.x = l.x; hp.y = l.y; }
-  hp.tx = l.x; hp.ty = l.y;
   el.setPointerCapture(e.pointerId);
-  hand.classList.add("show", "grabbing");
 });
 
 el.addEventListener("pointermove", e => {
   interacted = true;
-  const l = local(e);
-  hp.tx = l.x; hp.ty = l.y;
-
   const dx = last ? e.clientX - last.x : 0;
   const dy = last ? e.clientY - last.y : 0;
   last = { x: e.clientX, y: e.clientY };
@@ -739,9 +754,10 @@ el.addEventListener("pointermove", e => {
     moved += Math.abs(dx) + Math.abs(dy);
     spinBy(dx, dy);
   } else if (e.pointerType === "mouse") {
+    /* Hover nudge: moving across the globe gives it a push */
     vel.y = clamp(vel.y + dx * 0.0004, -0.02, 0.02);
     hovered = pick(e);
-    hand.classList.toggle("over-pin", !!hovered);
+    el.style.cursor = hovered ? "pointer" : "grab";
     if (hovered) showProject(hovered);
   }
 });
@@ -749,47 +765,38 @@ el.addEventListener("pointermove", e => {
 const endDrag = e => {
   if (!dragging) return;
   dragging = false;
-  hand.classList.remove("grabbing");
   if (e.type === "pointerup" && moved < 6) {
     const p = pick(e);
     if (p) poke(e, p);
   }
-  if (e.pointerType !== "mouse") setTimeout(() => hand.classList.remove("show"), 700);
 };
 el.addEventListener("pointerup", endDrag);
 el.addEventListener("pointercancel", endDrag);
 
-/* One-time ghost swipe hint */
-function demo() {
+/* Intro nudge: a gentle spin on first view so people see it's interactive */
+setTimeout(() => {
   if (interacted || reduce) return;
-  const r = wrap.getBoundingClientRect();
-  if (r.bottom < 0 || r.top > innerHeight) return;
   let t = 0;
-  hp.x = hp.tx = r.width * 0.3;
-  hp.y = hp.ty = r.height * 0.42;
-  hand.classList.add("show", "grabbing");
   const id = setInterval(() => {
-    if (interacted || t >= 60) {
-      clearInterval(id);
-      if (!interacted) hand.classList.remove("grabbing", "show");
-      return;
-    }
-    t++;
-    hp.tx += (r.width * 0.4) / 60;
-    hp.ty = r.height * 0.42 - Math.sin((t / 60) * Math.PI) * 14;
+    if (interacted || t++ >= 60) return clearInterval(id);
     spinBy(5, 0);
   }, 16);
-}
-setTimeout(demo, 1800);
+}, 1800);
 
-/* Resize + render loop */
+/* Resize */
 addEventListener("resize", () => {
   camera.aspect = box.clientWidth / box.clientHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(box.clientWidth, box.clientHeight);
 });
 
+/* Hand elements + render loop */
+const handRoot = document.getElementById("hhRoot");
+const handFingers = document.getElementById("hhFingers");
+const handThumb = document.getElementById("hhThumb");
 const clock = new THREE.Clock();
+let lastY = group.rotation.y;
+let s = 0;
 
 function animate() {
   const time = clock.getElapsedTime();
@@ -821,10 +828,18 @@ function animate() {
     }
   });
 
-  hp.x += (hp.tx - hp.x) * 0.28;
-  hp.y += (hp.ty - hp.y) * 0.28;
-  const lean = clamp((hp.tx - hp.x) * 0.5, -16, 16);
-  hand.style.transform = `translate3d(${hp.x - 28}px, ${hp.y - 2}px, 0) rotate(${lean}deg)`;
+  /* Twirl: the fingers lean and flick with the spin speed */
+  const dy = group.rotation.y - lastY;
+  lastY = group.rotation.y;
+  s += (clamp(dy * 60, -1, 1) - s) * 0.18;
+
+  const idle = reduce ? 0 : Math.sin(time * 1.3) * 0.12;
+  const flick = reduce ? 0 : Math.sin(time * 16) * Math.abs(s) * 3;
+
+  group.position.y = 0.72 + (reduce ? 0 : Math.sin(time * 1.3) * 0.04);
+  handRoot.style.transform = `translate(${(s * 12).toFixed(2)}px, ${reduce ? 0 : (Math.sin(time * 1.3 + 0.6) * 2).toFixed(2)}px)`;
+  handFingers.style.transform = `rotate(${((s + idle) * 9 + flick).toFixed(2)}deg)`;
+  handThumb.style.transform = `rotate(${(-(s + idle) * 5).toFixed(2)}deg)`;
 
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
