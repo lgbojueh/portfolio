@@ -88,3 +88,5 @@ new_body = '\n\n  ' + ',\n\n  '.join(objects) + '\n'
 text = text[:start] + new_body + text[end:]
 path.write_text(text, encoding='utf-8')
 print('Added parser and static analysis projects to portfolio.')
+
+# Triggered after workflow creation.
