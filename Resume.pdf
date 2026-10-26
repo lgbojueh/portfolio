@@ -1,0 +1,172 @@
+%PDF-1.3
+% ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 612 792 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (Lyoneh Gbojueh) /CreationDate (D:20000101000000+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (unspecified) /Title (Resume) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 6020
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 16 Tf 19.2 TL ET
+BT 1 0 0 1 230.88 750 Tm (LYONEH GBOJUEH) Tj T* ET
+BT /F1 8.2 Tf 9.84 TL ET
+BT 1 0 0 1 195.5665 730.48 Tm (Denver, CO | \(720\) 325-7616 | lyonehgbojueh32@gmail.com) Tj T* ET
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 187.568 720.476 Tm (Portfolio: lgbojueh.github.io/portfolio/ | GitHub: github.com/lgbojueh) Tj T* ET
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 211.284 710.716 Tm (LinkedIn: linkedin.com/in/lyoneh-gbojueh-988275255/) Tj T* ET
+BT /F2 9.2 Tf 11.04 TL ET
+BT 1 0 0 1 42 698.956 Tm (SUMMARY) Tj T* ET
+.6 w
+n 42 695.456 m 570 695.456 l S
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 685.456 Tm (Recent Computer Science graduate building production-minded full-stack applications, support tooling, and developer-focused systems. Hands-on) Tj T* ET
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 676.37 Tm (experience with React/Next.js, TypeScript, Python/FastAPI, SQL, REST APIs, Docker, CI/CD, authentication, language parsing, and static program) Tj T* ET
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 667.284 Tm (analysis.) Tj T* ET
+BT /F2 9.2 Tf 11.04 TL ET
+BT 1 0 0 1 42 654.198 Tm (TECHNICAL SKILLS) Tj T* ET
+.6 w
+n 42 650.698 m 570 650.698 l S
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 42 640.698 Tm (Languages: Python, Java, JavaScript, TypeScript, C++, SQL, HTML5, CSS3) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 42 629.848 Tm (Web & Data: React, Next.js, FastAPI, Node.js, REST APIs, PostgreSQL, SQLite, Supabase, Prisma ORM) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 42 618.998 Tm (Engineering: Git, GitHub Actions, Docker, Postman, Linux, CI/CD, OOP, Data Structures & Algorithms, Agile/Scrum) Tj T* ET
+BT /F2 9.2 Tf 11.04 TL ET
+BT 1 0 0 1 42 606.148 Tm (EDUCATION) Tj T* ET
+.6 w
+n 42 602.648 m 570 602.648 l S
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 42 592.648 Tm (Metropolitan State University of Denver - Denver, CO) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 516.645 592.648 Tm (December 2025) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 42 583.148 Tm (Bachelor of Science in Computer Science) Tj T* ET
+BT /F1 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 42 574.148 Tm (Relevant Coursework: Software Development Methods, Database Systems, Computer & Network Security, Data Structures & Algorithms, Operating Systems,) Tj T* ET
+BT /F1 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 42 565.652 Tm (Principles of Programming Languages) Tj T* ET
+BT /F2 9.2 Tf 11.04 TL ET
+BT 1 0 0 1 42 553.156 Tm (SELECTED TECHNICAL PROJECTS) Tj T* ET
+.6 w
+n 42 549.656 m 570 549.656 l S
+BT /F2 7.6 Tf 9.12 TL ET
+BT 1 0 0 1 42 539.656 Tm (SignalDesk AI - Support Engineering Platform | React | TypeScript | FastAPI | SQL | Docker | CI) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 530.456 Tm (- Built a full-stack incident-triage platform that classifies support issues, retrieves relevant internal knowledge, and returns evidence-backed troubleshooting workflows) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 522.078 Tm (  with severity, confidence, and escalation signals.) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 511.7 Tm (- Implemented ticket persistence/history, REST APIs, automated backend tests, Docker configuration, and GitHub Actions CI for a production-style development) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 503.322 Tm (  workflow.) Tj T* ET
+BT /F2 7.6 Tf 9.12 TL ET
+BT 1 0 0 1 42 492.944 Tm (Game Groove - Full-Stack Board Game Discovery | Next.js | React | TypeScript | PostgreSQL | Prisma) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 483.744 Tm (- Built a responsive full-stack application for searching, exploring, saving, and managing board games with authentication and database-backed user features.) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 473.366 Tm (- Integrated BoardGameGeek APIs for search, game details, statistics, and trending data.) Tj T* ET
+BT /F2 7.6 Tf 9.12 TL ET
+BT 1 0 0 1 42 462.988 Tm (Language Parser & Interpreter | Python | Lexer | Recursive-Descent Parser | AST | Pytest) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 453.788 Tm (- Built a small interpreted language from scratch with a hand-written lexer, recursive-descent parser, explicit AST, and execution engine supporting variables,) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 445.41 Tm (  expressions, conditionals, loops, and structured errors.) Tj T* ET
+BT /F2 7.6 Tf 9.12 TL ET
+BT 1 0 0 1 42 435.032 Tm (Static Analysis / AST Tool | Python | AST | CLI | JSON | CSV | Pytest) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 425.832 Tm (- Built a static-analysis CLI that inspects Python without executing it, extracting functions, classes, parameters, imports, assignments, calls, and per-function complexity) Tj T* ET
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 42 417.454 Tm (  metrics with JSON/CSV output.) Tj T* ET
+BT /F2 9.2 Tf 11.04 TL ET
+BT 1 0 0 1 42 405.076 Tm (LEADERSHIP & PROFESSIONAL EXPERIENCE) Tj T* ET
+.6 w
+n 42 401.576 m 570 401.576 l S
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 391.576 Tm (Scrum Team Lead / Developer - Senior Experience Project, MSU Denver) Tj T* ET
+BT /F1 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 553.9872 391.576 Tm (2025) Tj T* ET
+BT /F1 7 Tf 8.4 TL ET
+BT 1 0 0 1 42 382.576 Tm (- Led a six-person student team through sprint planning, task coordination, Git workflows, integration testing, and delivery of a collaborative software project.) Tj T* ET
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 372.316 Tm (Instacart Shopper) Tj T* ET
+BT /F1 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 535.5768 372.316 Tm (2021-2025) Tj T* ET
+BT /F1 7 Tf 8.4 TL ET
+BT 1 0 0 1 42 363.316 Tm (- Managed time-sensitive customer orders independently and resolved substitutions, availability changes, and delivery issues through clear real-time communication.) Tj T* ET
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 42 353.056 Tm (Package Handler - FedEx) Tj T* ET
+BT /F1 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 553.9872 353.056 Tm (2020) Tj T* ET
+BT /F1 7 Tf 8.4 TL ET
+BT 1 0 0 1 42 344.056 Tm (- Worked accurately in a high-volume team environment while following operational procedures and meeting strict processing deadlines.) Tj T* ET
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000514 00000 n 
+0000000582 00000 n 
+0000000846 00000 n 
+0000000905 00000 n 
+trailer
+<<
+/ID 
+[<8344bb1697ef9f4438d3f8f3319b3483><8344bb1697ef9f4438d3f8f3319b3483>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+6976
+%%EOF
